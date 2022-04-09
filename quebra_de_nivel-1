@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main(void)
+{
+	setlocale (LC_ALL, "Portuguese");
+	int nota, cod, quantidade, maior_qtde=0, maior_qtde_cod, menor_qtde=99999, menor_qtde_cod, maior_preco_cod, menor_preco_cod, menor_nota_cod;
+	float valor_uni, valor_produto, valor_nota=0, maior_preco=0, menor_preco=9999, menor_nota=99999, valor_total=0;
+	printf ("Nota fiscal:\n");
+	scanf ("%d",&nota);
+	if (nota<1)
+	return 0;
+	while (nota>=1)
+	{
+		valor_nota=0;
+		printf ("Cod produto:\n");
+		scanf ("%d",&cod);
+		while (cod>=1)
+		{
+			printf ("Valor unitário:\n");
+			scanf ("%f",&valor_uni);
+			printf ("Quantidade:\n");
+			scanf ("%d",&quantidade);
+			valor_produto = valor_uni * quantidade;
+			printf ("Cod.    Quant     Preço Unit.     Total\n");
+			printf ("%d      %d        R$%.2f       R$%.2f\n",cod,quantidade,valor_uni,valor_produto);
+			valor_nota = valor_nota + valor_produto;
+			if (quantidade>maior_qtde)
+			{
+				maior_qtde = quantidade;
+				maior_qtde_cod = cod;
+			}
+			if (quantidade<menor_qtde)
+			{
+				menor_qtde = quantidade;
+				menor_qtde_cod = cod;
+			}
+			if (valor_uni>maior_preco)
+			{
+				maior_preco = valor_uni;
+				maior_preco_cod = cod;
+			}
+			if (valor_uni<menor_preco)
+			{
+				menor_preco = valor_uni;
+				menor_preco_cod = cod;
+			}
+			printf ("Cod produto:\n");
+			scanf ("%d",&cod);
+		}
+			printf ("Valor Final: R$%.2f\n",valor_nota);
+			printf ("Produto mais vendido: %d\n",maior_qtde_cod);
+			printf ("Produto mais barato: %d\n",menor_preco_cod);
+			if (valor_nota<menor_nota)
+			{
+				menor_nota = valor_nota;
+				menor_nota_cod = nota;
+			}
+		valor_total = valor_total + valor_nota;
+		printf ("Nota fiscal:\n");
+		scanf ("%d",&nota);
+	}
+		printf ("Total de todas as vendas: R$%.2f\n",valor_total);
+		printf ("Produto menos vendido: %d\n",menor_qtde_cod);
+		printf ("Produto mais caro: %d\n",maior_preco_cod);
+		printf ("Nota com menor venda; %d\n",menor_nota_cod);
+		
+	return 0;
+}
