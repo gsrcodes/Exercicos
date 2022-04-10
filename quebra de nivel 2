@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main(void)
+{
+	setlocale(LC_ALL, "Portuguese");
+	int lab, aluno, computador, tempo, lab_maior=0, lab_maior_numero=0, aluno_menor=9999, aluno_menor_numero, nmasc=0, nfem=0, resp, qtde_aluno=0;
+	float qtde_homem=0, qtde_mulher=0, p_homem, p_mulher;
+	char sexo;
+	printf ("Número laboratório:\n");
+	scanf ("%d",&lab);
+	while (lab>0)
+	{
+		printf ("RA:\n");
+		scanf ("%d",&aluno);
+		while (aluno>0)
+		{
+			printf ("Sexo:\nM - Masculino\nF - Feminino\n");
+			fflush (stdin);
+			scanf ("%c",&sexo);
+			if (sexo == 'M' || sexo == 'm')
+			{
+				nmasc++;
+				qtde_homem++;
+			}
+			else
+			{
+				nfem++;
+				qtde_mulher++;
+			}
+			printf ("Computador:\n");
+			scanf ("%d",&computador);
+			printf ("Tempo de uso em minutos:\n");
+			scanf ("%d",&tempo);
+			if (tempo>aluno_menor)
+			{
+				aluno_menor = tempo;
+				aluno_menor_numero = aluno;
+			}
+			printf ("RA:\n");
+			scanf ("%d",&aluno);
+			qtde_aluno++;
+			p_homem = qtde_homem / qtde_aluno * 100;
+			p_mulher = 100 - p_homem;
+		}
+		printf ("Aluno com menos uso: %d\n",aluno_menor_numero);
+		printf ("Porcentagem de homens: %.2f\n",p_homem);
+		printf ("Porcentagem de mulheres: %.2f\n",p_mulher);
+		if (qtde_aluno>lab_maior)
+		{
+			lab_maior = qtde_aluno;
+			lab_maior_numero = lab;
+		}
+		printf ("Número laboratório:\n");
+		scanf ("%d",&lab);
+	}
+	printf ("Laboratório com mais alunos: %d\n",lab_maior_numero);
+	return 0;
+}
