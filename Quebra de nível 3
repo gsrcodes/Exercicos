@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main(void)
+{
+	setlocale (LC_ALL, "Portuguese");
+	int cod, qtde, tipos=0, maior_qtde=0, maior_total_cod;
+	char cor, maior_qtde_cor, menor_preco_cor;
+	float preco, total, total_final=0, maior_total=0, menor_preco=99999;
+	printf ("Código roupa:\n");
+	scanf ("%d",&cod);
+	while (cod>0)
+	{
+		total_final = 0;
+		printf ("Cor da roupa:\n");
+		fflush (stdin);
+		scanf ("%c",&cor);
+		fflush (stdin);
+		while (cor!='k')
+		{
+			printf ("Quantidade:\n");
+			scanf ("%d",&qtde);
+			printf ("Preço uni.\n");
+			scanf ("%f",&preco);
+			total = preco * qtde;
+			printf ("Cor:     Qtde:     Preço uni:      Total:\n");
+			printf ("%c       %d        R$%.2f          R$%.2f\n",cor,qtde,preco,total);
+			fflush (stdin);
+			total_final = total_final + total;
+			if (qtde>maior_qtde)
+			{
+				maior_qtde = qtde;
+				maior_qtde_cor = cor;
+			}
+			if (preco<menor_preco)
+			{
+				menor_preco = preco;
+				menor_preco_cor = cod;
+			}
+			printf ("Cor da roupa:\n");
+			fflush (stdin);
+			scanf ("%c",&cor);
+		}
+		if (total_final > maior_total)
+		{
+			maior_total = total_final;
+			maior_total_cod = cod;
+		}
+		tipos++;
+		printf ("Total Final: R$%.2f\n",total_final);
+		printf ("Cor mais vendida: %c\n",maior_qtde_cor);
+		printf ("Cor mais barata: %c\n",menor_preco_cor);
+		printf ("Código roupa:\n");
+		scanf ("%d",&cod);
+	}
+	printf ("Roupa que obteve o maior total: %d\n",maior_total_cod);
+	printf ("Quantidade de tipos de roupas: %d\n",tipos);
+	return 0;
+}
