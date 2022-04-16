@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define TF 10
+
+int main(void)
+{
+    int vet[TF], vetm[TF], TL = 0, TL2, aux, i, num;
+    scanf("%d", &num);
+
+    while (num > 0 && TL < TF)
+    {
+        vet[TL] = num;
+        vetm[TL] = num;
+        scanf("%d", &num);
+        TL++;
+    }
+
+    for (TL2 = TL, i = 0; i < TL2; i++)
+        for (TL = 0; TL < TL2 -1; TL++)
+        {
+            if (vet[TL] < vet[TL + 1])
+            {
+                aux = vet[TL];
+                vet[TL] = vet[TL + 1];
+                vet[TL + 1] = aux;
+            }
+            if (vetm[TL] > vetm[TL + 1])
+            {
+                aux = vetm[TL];
+                vetm[TL] = vetm[TL + 1];
+                vetm[TL + 1] = aux;
+            }
+        }
+
+    printf("\n");
+
+    for (TL = 0; TL < TL2; TL++)
+        printf("%d\n", vet[TL]);
+
+    printf("\n");
+
+    for (TL = 0; TL < TL2; TL++)
+        printf("%d\n", vetm[TL]);
+}
