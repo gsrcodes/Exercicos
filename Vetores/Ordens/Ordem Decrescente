@@ -6,7 +6,7 @@ int main(void)
     int vet[TF], TL = 0, TL2, aux, i, num;
     scanf("%d", &num);
 
-    while (num > 0 && TL < TF) // Atribui os valores do vetor
+    while (num > 0 && TL < TF) // Atribui os valores ao vetor
     {
         vet[TL] = num;
         scanf("%d", &num);
