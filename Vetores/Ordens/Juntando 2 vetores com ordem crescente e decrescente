@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TF 10
+
+int main(void)
+{
+    int vet1[TF], vet2[TF], vet3[TF], vet3m[TF], TL1 = 0, TL2 = 0, TL3 = 0, TL4, i, aux, num;
+
+    printf("Insira os valores do primeiro vetor:\n");
+    scanf("%d", &num);
+    while (num > 0 && TL1 < TF) // Atribuindo os valores do primeiro vetor
+    {
+        vet1[TL1] = num;
+        scanf("%d", &num);
+        TL1++; // Tamanho lógico do primeiro vetor
+    }
+
+    system ("cls");
+    
+    printf("\nInsira os valores do segundo vetor:\n");
+    scanf("%d", &num);
+    while (num > 0 && TL2 < TF) // Atribuindo os valores do segundo vetor
+    {
+        vet2[TL2] = num;
+        scanf("%d", &num);
+        TL2++; // Tamanho lógico do segundo vetor
+    }
+
+    TL3 = TL1 + TL2; // Tamanho lógico do vetor 3 é igual ao valor lógico dos 2 outros vetores somados
+    TL4 = TL3; // Salvando tamanho lógico do terceiro vetor
+
+    for (TL3 = 0; TL3 < TL1; TL3++) // Juntando o primeiro vetor ao terceiro
+        vet3[TL3] = vet1[TL3];
+    for (TL3 = TL1, TL2 = 0; TL3 < TL4; TL3++, TL2++) // Juntando o segundo vetor ao terceiro
+        vet3[TL3] = vet2[TL2];
+
+    for (TL3 = 0; TL3 < TL4; TL3++) // Duplicando o vetor 
+        vet3m[TL3] = vet3[TL3]; 
+
+    for(i=0; i < TL4; i++) // Ordenando em ordem crescente
+        for(TL3 = 0; TL3 < TL4 - 1; TL3++)
+            if (vet3[TL3] > vet3[TL3 + 1])
+            {
+                aux = vet3[TL3];
+                vet3[TL3] = vet3[TL3 + 1];
+                vet3[TL3 + 1] = aux;
+            }
+
+    for(i=0; i < TL4; i++) // Ordenando em ordem decrescente
+        for(TL3 = 0; TL3 < TL4 - 1; TL3++)
+            if (vet3m[TL3] < vet3m[TL3 + 1])
+            {
+                aux = vet3m[TL3];
+                vet3m[TL3] = vet3m[TL3 + 1];
+                vet3m[TL3 + 1] = aux;
+            }
+    
+    system("cls");
+
+    printf ("Ordem Crescente:\n");
+    for (TL3 = 0; TL3 < TL4; TL3++) // Printando o terceiro vetor em ordem crescente
+        printf("%d\n", vet3[TL3]);
+
+    printf ("\n");
+
+    printf ("Ordem Decrescente:\n");
+    for (TL3 = 0; TL3 < TL4; TL3++) // Printando o terceiro vetor em ordem decrescente
+        printf("%d\n", vet3m[TL3]);
+
+    return 0;
+}
